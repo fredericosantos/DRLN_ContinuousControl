@@ -1,6 +1,6 @@
 [//]: # (Image References)
 
-[image1]: https://raw.githubusercontent.com/fredericosantos/DRLN_Navigation/master/image1.png "Random Samples"
+[image1]: https://raw.githubusercontent.com/fredericosantos/DRLN_ContinuousControl/master/Graph.png "Scores"
 
 # Report on Project 1: Navigation
 
@@ -8,42 +8,37 @@
 
 ### Learning Algorithm
 
-I used the standard DQN Agent for this project. I used the recently released Rectified Adam as my optimizer.
+I used the DDPG algorithm for this project. I used the recently released Rectified Adam as my optimizer.
 
 ### Hyperparameters
 
 The hyperparameters values I selected were:
 
-- Buffer size (buffer_size): int(1e5)
-- Batch Size (batch_size): 128
-- Discount factor (gamma): 0.99
-- Soft update of target parameters (tau): 1e-3
-- How many steps it takes to update the network (update_every): 4
-- Epsilon starting value (eps_start): 1.0
-- Epsilon decay (eps_decay): 0.96
-- Epsilon minimum value (eps_end): 0.01
-- Maximum steps to take during an episode (max_t): 1000
-- Learning rate (lr) = 1e-5
+BUFFER_SIZE = int(1e6)  # replay buffer size
+BATCH_SIZE = 128        # minibatch size
+GAMMA = 0.99            # discount factor
+TAU = 1e-3              # for soft update of target parameters
+LR_ACTOR = 0.001         # learning rate of the actor
+LR_CRITIC = 0.001        # learning rate of the critic
+WEIGHT_DECAY = 0        # L2 weight decay
+LEARN_EVERY = 4        # learning timestep interval
+LEARN_NUM = 1          # number of learning passes
 
-I've found that setting the epsilon decay to 0.96 improved the agent's learning time the most.
 
 ### Model Architecture
 
-I built a neural network with 2 hidden layers with 2048 hidden neurons, with each layer being activated by the ReLU function except for the final layer.
+Both Actor and Critic models are composed of 3 fully connected layers, with a 1D batch normalization layer from the first to second layer.
 
 ## Plot of Rewards
 
-Using a replay buffer that randomly samples from the experiences memory, the agent was able to solve the environment in 383 steps.
-
-![Random loose samples][image1]
+![Scores][image1]
 
 
 ## Ideas for Future Work
 
-In the future I would like to be able to implement the Double DQN algorithm with a working Prioritized Experience Replay. I would also improve the agent's performance by adding a dueling DQN.
+In the future I would like to be able to implement more advanced algorithms such as the D4PG that's more recent.
 
-I'd also like to challenge the method to store experiences in memory as currently it's simply keeping the latest experiences.
-
+I would also like to work to implement Prioritized Experienced Replay so the Agent has a better replay pool.
 
 
 
