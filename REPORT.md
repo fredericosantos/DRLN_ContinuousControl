@@ -2,7 +2,7 @@
 
 [image1]: https://raw.githubusercontent.com/fredericosantos/DRLN_ContinuousControl/master/Graph.png "Scores"
 
-# Report on Project 1: Navigation
+# Report on Project 2: Continuous Control
 
 ## Learning Algorithm
 
